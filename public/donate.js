@@ -474,11 +474,6 @@ function requestNetworkDonations(opts) {
         for (var currency in opts.currencies) {
             var currCurrency = opts.currencies[currency];
             filteredCurrencies[currCurrency] = allCurrencies[currCurrency];
-
-            var conversionRateObj = {
-                currCurrency: ''
-            }
-            conversionRates.push(conversionRateObj);
         }
     }
     else {
@@ -598,6 +593,8 @@ function requestNetworkDonations(opts) {
                     totalOwed = (parsedResponse.conversion_rate * selectedAmount).toFixed(PAYMENT_ROUND_AMOUNT);
                     total.innerHTML = totalOwed + ' ' + selectedCurrency;
                     conversionRates[selectedCurrency] = parsedResponse.conversion_rate;
+                } else if (xmlHttp.readyState == 4 && xmlHttp.status != 200) {
+                    alert('Error fetching conversion rates, this error has been logged');
                 }
             }
             xmlHttp.open("GET", signUrl, true); // true for asynchronous 
