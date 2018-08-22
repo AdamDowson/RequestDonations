@@ -446,7 +446,7 @@ var customAmountButton, customAmountInput, proceedButton, closeIcon, conversionR
 var that;
 var selectedAmount = '10', selectedCurrency = 'ETH', totalOwed;
 var conversionRates = [];
-var filteredCurrencies;
+var filteredCurrencies = [];
 var address;
 const PAYMENT_ROUND_AMOUNT = 6;
 
@@ -469,19 +469,27 @@ function requestNetworkDonations(opts) {
         'DGX': 'Digix Gold (DGX)'
     };
 
-    filteredCurrencies = {};
     if (opts.currencies != null && opts.currencies.length > 0) {
         for (var currency in opts.currencies) {
             var currCurrency = opts.currencies[currency];
-            filteredCurrencies[currCurrency] = allCurrencies[currCurrency];
+            if (allCurrencies[currCurrency]) {
+                filteredCurrencies[currCurrency] = allCurrencies[currCurrency];
+            }
         }
     }
     else {
         filteredCurrencies = allCurrencies;
     }
 
+    if (!filteredCurrencies || Object.keys(filteredCurrencies).length == 0) {
+        alert('Incorrect currencies defined in parameters');
+        triggerButton.classList.add('hidden');
+        return;
+    }
+
     if (!opts.address) {
         alert('Please enter an address');
+        return;
     } else {
         address = opts.address;
     }
@@ -501,8 +509,7 @@ function requestNetworkDonations(opts) {
         donationsModal = new request.modal({
             footer: true,
             closeMethods: ['overlay', 'button', 'escape'],
-            closeLabel: "Close",
-            cssClass: ['request-demo'],
+            closeLabel: "Close"
         });
 
         var footerRequest = '<img class="request-footer-logo" src="' + rootUrl + 'img/request-logo.png"/><span class="request-footer-copy">Powered by Request</span>',
