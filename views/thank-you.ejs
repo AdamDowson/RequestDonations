@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Request Network Donation - Thank You</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="css/thank-you.css">
+
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+
+    <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800|Raleway:400,500,600" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="container">
+            <a href="https://request.network">
+                <img class="logo" src="img/logo-horizontal.png" />
+            </a>
+        </div>
+
+    </header>
+    <div class="navbar-divider-bg mb-3"></div>
+    <div class="container mb-5">
+
+        <h1 class="text-center pt-5">Thank you for your donation!</h1>
+        <p class="text-center pt-3 mb-4 col-lg-8 offset-lg-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sodales eleifend est, id elementum elit facilisis
+            et. Phasellus placerat vestibulum tristique. Sed sodales at elit vitae fermentum. Praesent in varius est. </p>
+        <div class="text-center">
+            <a id="return-to-site" class="btn btn-primary mb-4" href="<%= redirect %>">Return to site</a>
+        </div>
+
+
+        <div class="row pt-5">
+            <div class="col-12 col-md-7">
+                <h3 class="mb-3">Transaction Details</h3>
+                <p class="mb-1">You have donated:
+                    <strong>$
+                        <%= fiat %>
+                    </strong>
+                </p>
+                <p class="mb-1">Total paid in
+                    <%= currency %>:
+                        <strong>
+                            <%= owed %>
+                        </strong>
+                </p>
+                <p class="txid-row">
+                    <span>TXID:</span>
+                    <a href="https://rinkeby.etherscan.io/tx/<%= txid %>">
+                        <%= txid %>
+                    </a>
+                </p>
+
+                <div class="more-info-block">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sodales eleifend est, id elementum elit
+                        facilisis et. </p>
+
+                    <p>
+                        <i id="txid-status" class="circle pending"></i>
+                        <span class="pending-text">Transaction pending</span>
+                        <span class="confirmed-text">Transaction confirmed</span>
+                    </p>
+
+                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet ultricies diam. Duis eu convallis
+                        erat, nec aliquet enim. Nulla finibus dictum dui quis vulputate. Integer lacinia sapien nec venenatis
+                        rhoncus. Nam odio enim, rutrum in nulla non, lobortis facilisis risus. Praesent sagittis sem a auctor
+                        ullamcorper.
+                    </p>
+                </div>
+
+            </div>
+            <div class="col-12 col-md-4 offset-md-1">
+                <h3 class="mb-3">Share your donation</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sodales eleifend est, id elementum elit facilisis
+                    et. </p>
+                <a id="twitter-share" class="btn btn-primary share-btn mt-3">
+                    <svg viewBox="328 355 335 276" xmlns="http://www.w3.org/2000/svg">
+                        <path d="
+                      M 630, 425
+                      A 195, 195 0 0 1 331, 600
+                      A 142, 142 0 0 0 428, 570
+                      A  70,  70 0 0 1 370, 523
+                      A  70,  70 0 0 0 401, 521
+                      A  70,  70 0 0 1 344, 455
+                      A  70,  70 0 0 0 372, 460
+                      A  70,  70 0 0 1 354, 370
+                      A 195, 195 0 0 0 495, 442
+                      A  67,  67 0 0 1 611, 380
+                      A 117, 117 0 0 0 654, 363
+                      A  65,  65 0 0 1 623, 401
+                      A 117, 117 0 0 0 662, 390
+                      A  65,  65 0 0 1 630, 425
+                      Z" style="fill:#fff;" />
+                    </svg>Share on Twitter</a>
+
+                <div class="or-divider mt-4 mb-4">
+                    <span>or</span>
+                </div>
+                <a id="facebook-share" class="btn btn-primary share-btn">
+                    <svg viewBox="0 0 12 12" preserveAspectRatio="xMidYMid meet">
+                        <path class="svg-icon-path" d="M9.1,0.1V2H8C7.6,2,7.3,2.1,7.1,2.3C7,2.4,6.9,2.7,6.9,3v1.4H9L8.8,6.5H6.9V12H4.7V6.5H2.9V4.4h1.8V2.8 c0-0.9,0.3-1.6,0.7-2.1C6,0.2,6.6,0,7.5,0C8.2,0,8.7,0,9.1,0.1z"></path>
+                    </svg>Share on Facebook
+                </a>
+
+
+            </div>
+        </div>
+
+
+    </div>
+    <!-- /container -->
+    <footer class="pt-5 pb-5">
+        <div class="container">
+
+            <div class="row footer-menu">
+                <div class="col-6 col-md">
+                    <a href="https://request.network">
+                        <img class="footer-logo" src="img/request-logo-white.png" />
+                    </a>
+                </div>
+                <div class="footer-menu-item">
+                    <h5>Request Network</h5>
+                    <ul class="list-unstyled text-small">
+                        <li>
+                            <a class="text-muted" href="https://request.network/#/">Website</a>
+                        </li>
+                        <li>
+                            <a class="text-muted" href="https://request.network/assets/pdf/request_whitepaper.pdf">Whitepaper</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-menu-item">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled text-small">
+                        <li>
+                            <a class="text-muted" href="https://blog.request.network/">Blog</a>
+                        </li>
+                        <li>
+                            <a class="text-muted" href="https://github.com/RequestNetwork/requestNetwork">GitHub</a>
+                        </li>
+                        <li>
+                            <a class="text-muted" href="https://docs.request.network/">Docs</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-menu-item">
+                    <h5>About</h5>
+                    <ul class="list-unstyled text-small">
+                        <li>
+                            <a class="text-muted" href="https://www.reddit.com/r/RequestNetwork/">Reddit</a>
+                        </li>
+                        <li>
+                            <a class="text-muted" href="https://twitter.com/RequestNetwork">Twitter</a>
+                        </li>
+                        <li>
+                            <a class="text-muted" href="https://docs.request.network/join-request/job-offers">Careers</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bottom-footer clearfix mt-5 pt-5">
+                <p class="float-left">&copy; Request Network. All Rights Reserved.</p>
+                <div class="social-icons float-right">
+
+                    <a href="https://www.facebook.com/TheRequestNetwork/">
+                        <img src="img/facebook.svg" />
+                    </a>
+                    <a href="https://twitter.com/requestnetwork">
+                        <img src="img/twitter.svg" />
+                    </a>
+                    <a href="https://www.reddit.com/r/RequestNetwork/">
+                        <img src="img/reddit.svg" />
+                    </a>
+                    <a href="https://www.linkedin.com/company/request-network/">
+                        <img src="img/linkedin.svg" />
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+
+    <script>
+        var shareText = 'I have just donated $25 in ETH to MakerDAO thanks to the Request Network #RequestNetwork #cryptocurrency #crypto';
+
+        document.getElementById('twitter-share').addEventListener('click', function () {
+            var url = window.location.href;
+            var text = shareText;
+            window.open('http://twitter.com/share?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(text), '', 'left=50,top=50,width=700,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+        });
+
+        document.getElementById('facebook-share').addEventListener('click', function () {
+            var url = "https://window.location.href";
+            var text = shareText;
+            window.open('http://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url), '', 'left=50,top=50,width=700,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+        });
+
+        var web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/a84k2Xp83SohNwwQCTd6"));
+        var txid = "<%= txid %>";
+
+        var checkTxidInterval = setInterval(hasBeenMined, 2000);
+
+        function hasBeenMined() {
+            var transaction = web3.eth.getTransaction(txid);
+
+            if (transaction && transaction.blockHash) {
+                document.getElementById('txid-status').classList.remove('pending');
+                clearInterval(checkTxidInterval);
+            }
+        }
+
+        hasBeenMined();
+
+    </script>
+</body>
+
+</html>

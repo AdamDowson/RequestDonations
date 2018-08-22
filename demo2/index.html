@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>This is a very simple example</h1>
+<p>Click <a href="#" id="requestDonationTrigger">here</a> to trigger the modal</p>
+
+
+<script type="text/javascript" src="https://donations.wooreq.com/donate.js"></script>
+<script type="text/javascript">
+  var requestDonations = new requestNetworkDonations({
+    currencies: ['ETH', 'REQ', 'OMG', 'KNC', 'DAI']
+  });
+  requestDonations.start()
+</script>
+</body>
+</html>
