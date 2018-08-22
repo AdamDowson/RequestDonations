@@ -447,6 +447,7 @@ var that;
 var selectedAmount = '10', selectedCurrency = 'ETH', totalOwed;
 var conversionRates = [];
 var filteredCurrencies;
+var address;
 const PAYMENT_ROUND_AMOUNT = 6;
 
 function requestNetworkDonations(opts) {
@@ -482,6 +483,12 @@ function requestNetworkDonations(opts) {
     }
     else {
         filteredCurrencies = allCurrencies;
+    }
+
+    if (!opts.address) {
+        alert('Please enter an address');
+    } else {
+        address = opts.address;
     }
 
     /* ----------------------------------------------------------- */
@@ -547,7 +554,7 @@ function requestNetworkDonations(opts) {
 
         const params = {
             'to_pay': totalOwed,
-            'to_address': '0x2027C7fD9E48c028e7A927A6dEf44F4B2E52C703',
+            'to_address': address,
             'redirect_url': fullRedirectUrl,
             'reason': 'Donation to MakerDAO',
             'network': 4,
