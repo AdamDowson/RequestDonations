@@ -448,7 +448,7 @@ var selectedAmount = '10', selectedCurrency = 'ETH', totalOwed;
 var conversionRates = [];
 var filteredCurrencies = [];
 var address;
-const PAYMENT_ROUND_AMOUNT = 6;
+var PAYMENT_ROUND_AMOUNT = 6;
 
 function requestNetworkDonations(opts) {
     opts = opts || {};
@@ -513,7 +513,7 @@ function requestNetworkDonations(opts) {
         });
 
         var footerRequest = '<img class="request-footer-logo" src="' + rootUrl + 'img/request-logo.png"/><span class="request-footer-copy">Powered by Request</span>',
-            footerButton = '<button id="proceed-button" class="request-btn request-btn--primary request-btn--pull-right">Proceed</button>';
+            footerButton = '<button id="proceed-button" class="request-btn request-btn--primary request-btn--pull-right">Proceed<i class="spinner"></i></button>';
 
         donationsModal.setFooterContent(footerRequest + footerButton);
 
@@ -545,7 +545,7 @@ function requestNetworkDonations(opts) {
 
         var redirectBaseUrl = 'https://donations.request.network/thank-you';
         var url = [location.protocol, '//', location.host, location.pathname].join('');
-        const redirectUrlParams = {
+        var redirectUrlParams = {
             'owed': totalOwed,
             'currency': selectedCurrency,
             'fiat': selectedAmount,
@@ -554,7 +554,7 @@ function requestNetworkDonations(opts) {
         }
         var fullRedirectUrl = redirectBaseUrl + that.jsonToQueryString(redirectUrlParams);
 
-        const params = {
+        var params = {
             'to_pay': totalOwed,
             'to_address': address,
             'redirect_url': fullRedirectUrl,
@@ -580,7 +580,7 @@ function requestNetworkDonations(opts) {
     this.fetchRates = function () {
         var xhr = new XMLHttpRequest();
 
-        const params = {
+        var params = {
             'currency': selectedCurrency
         }
 

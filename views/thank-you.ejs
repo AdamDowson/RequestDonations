@@ -26,9 +26,8 @@
     <div class="navbar-divider-bg mb-3"></div>
     <div class="container mb-5">
 
-        <h1 class="text-center pt-5">Thank you for your donation!</h1>
-        <p class="text-center pt-3 mb-4 col-lg-8 offset-lg-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sodales eleifend est, id elementum elit facilisis
-            et. Phasellus placerat vestibulum tristique. Sed sodales at elit vitae fermentum. Praesent in varius est. </p>
+        <h1 class="text-center pt-5">Thank You For Your Donation!</h1>
+        <p class="text-center pt-3 mb-4 col-lg-8 offset-lg-2">Your support goes a long way towards making a difference. By making a contribution you are not only changing lives; you are transforming futures.</p>
 
             <% if (redirect) { %>
                 <div class="text-center">
@@ -59,8 +58,7 @@
                 </p>
 
                 <div class="more-info-block">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sodales eleifend est, id elementum elit
-                        facilisis et. </p>
+                    <p>Your transaction has been successfully processed. You can view the status of the transaction by using the TXID link above.</p>
 
                     <p>
                         <i id="txid-status" class="circle pending"></i>
@@ -68,18 +66,14 @@
                         <span class="confirmed-text">Transaction confirmed</span>
                     </p>
 
-                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet ultricies diam. Duis eu convallis
-                        erat, nec aliquet enim. Nulla finibus dictum dui quis vulputate. Integer lacinia sapien nec venenatis
-                        rhoncus. Nam odio enim, rutrum in nulla non, lobortis facilisis risus. Praesent sagittis sem a auctor
-                        ullamcorper.
+                    <p class="mb-0">Please retain a copy of this page for your records.
                     </p>
                 </div>
 
             </div>
             <div class="col-12 col-md-4 offset-md-1">
                 <h3 class="mb-3">Share your donation</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sodales eleifend est, id elementum elit facilisis
-                    et. </p>
+                <p>Help multiply the impact of your donation by sharing to your network using the links below.</p>
                 <a id="twitter-share" class="btn btn-primary share-btn mt-3 <% if (!redirect) { %> disabled <% } %>">
                     <svg viewBox="328 355 335 276" xmlns="http://www.w3.org/2000/svg">
                         <path d="
@@ -197,7 +191,7 @@
         <% if (redirect) { %>
 
             var rootUrlForSharing = hostnameFromURL('<%= redirect %>');
-            var shareText = 'I have just donated $<%= fiat %> in <%= currency %> to ' + rootUrlForSharing + ' thanks to the Request Network #RequestNetwork #<%= currency %> #cryptocurrency #crypto';
+            var shareText = 'I just made a difference by donating $<%= fiat %> in <%= currency %> using the #RequestNetwork. Help me amplify my impact by giving to ' + rootUrlForSharing + ' #thanks #ETH #cryptocurrency';
 
             //We need to strip out the redirect URL for social as it messes up the links
             var strippedUrlForSharing = removeURLParameter(window.location.href, 'redirect');
