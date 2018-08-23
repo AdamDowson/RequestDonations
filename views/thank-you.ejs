@@ -10,7 +10,6 @@
 
     <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
 
-    <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800|Raleway:400,500,600" rel="stylesheet"> -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Source+Sans+Pro:400,600,700" rel="stylesheet">
 
 </head>
@@ -30,9 +29,12 @@
         <h1 class="text-center pt-5">Thank you for your donation!</h1>
         <p class="text-center pt-3 mb-4 col-lg-8 offset-lg-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sodales eleifend est, id elementum elit facilisis
             et. Phasellus placerat vestibulum tristique. Sed sodales at elit vitae fermentum. Praesent in varius est. </p>
-        <div class="text-center">
-            <a id="return-to-site" class="btn btn-primary mb-4" href="<%= redirect %>">Return to site</a>
-        </div>
+
+            <% if (redirect) { %>
+                <div class="text-center">
+                    <a id="return-to-site" class="btn btn-primary mb-4" href="<%= redirect %>">Return to site</a>
+                </div>
+            <% } %>
 
 
         <div class="row pt-5">
@@ -78,7 +80,7 @@
                 <h3 class="mb-3">Share your donation</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sodales eleifend est, id elementum elit facilisis
                     et. </p>
-                <a id="twitter-share" class="btn btn-primary share-btn mt-3">
+                <a id="twitter-share" class="btn btn-primary share-btn mt-3 <% if (!redirect) { %> disabled <% } %>">
                     <svg viewBox="328 355 335 276" xmlns="http://www.w3.org/2000/svg">
                         <path d="
                       M 630, 425
@@ -101,7 +103,7 @@
                 <div class="or-divider mt-4 mb-4">
                     <span>or</span>
                 </div>
-                <a id="facebook-share" class="btn btn-primary share-btn">
+                <a id="facebook-share" class="btn btn-primary share-btn <% if (!redirect) { %> disabled <% } %>">
                     <svg viewBox="0 0 12 12" preserveAspectRatio="xMidYMid meet">
                         <path class="svg-icon-path" d="M9.1,0.1V2H8C7.6,2,7.3,2.1,7.1,2.3C7,2.4,6.9,2.7,6.9,3v1.4H9L8.8,6.5H6.9V12H4.7V6.5H2.9V4.4h1.8V2.8 c0-0.9,0.3-1.6,0.7-2.1C6,0.2,6.6,0,7.5,0C8.2,0,8.7,0,9.1,0.1z"></path>
                     </svg>Share on Facebook
@@ -190,25 +192,62 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
 
-    <script>
-        var shareText = 'I have just donated $25 in ETH to MakerDAO thanks to the Request Network #RequestNetwork #cryptocurrency #crypto';
+    <script>       
 
-        document.getElementById('twitter-share').addEventListener('click', function () {
-            var url = window.location.href;
-            var text = shareText;
-            window.open('http://twitter.com/share?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(text), '', 'left=50,top=50,width=700,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
-        });
+        <% if (redirect) { %>
 
-        document.getElementById('facebook-share').addEventListener('click', function () {
-            var url = "https://window.location.href";
-            var text = shareText;
-            window.open('http://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url), '', 'left=50,top=50,width=700,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
-        });
+            var rootUrlForSharing = hostnameFromURL('<%= redirect %>');
+            var shareText = 'I have just donated $<%= fiat %> in <%= currency %> to ' + rootUrlForSharing + ' thanks to the Request Network #RequestNetwork #<%= currency %> #cryptocurrency #crypto';
+
+            //We need to strip out the redirect URL for social as it messes up the links
+            var strippedUrlForSharing = removeURLParameter(window.location.href, 'redirect');
+
+            document.getElementById('twitter-share').addEventListener('click', function () {
+                var url = window.location.href;
+                window.open('http://twitter.com/share?url=' + encodeURIComponent(strippedUrlForSharing) + '&text=' + encodeURIComponent(shareText), '', 'left=50,top=50,width=700,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+            });
+
+            document.getElementById('facebook-share').addEventListener('click', function () {
+                var url = "https://window.location.href";
+                var text = shareText;
+                window.open('http://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(strippedUrlForSharing), '', 'left=50,top=50,width=700,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+            });
+
+        <% } %>
 
         var web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/a84k2Xp83SohNwwQCTd6"));
         var txid = "<%= txid %>";
 
         var checkTxidInterval = setInterval(hasBeenMined, 2000);
+
+        function hostnameFromURL(url) {
+            var a = document.createElement('a');
+            a.href = url;
+            return a.protocol + '//' + a.hostname + '/';
+        }
+
+        function removeURLParameter(url, parameter) {
+            //prefer to use l.search if you have a location/link object
+            var urlparts = url.split('?');
+            if (urlparts.length >= 2) {
+
+                var prefix = encodeURIComponent(parameter) + '=';
+                var pars = urlparts[1].split(/[&;]/g);
+
+                //reverse iteration as may be destructive
+                for (var i = pars.length; i-- > 0;) {
+                    //idiom for string.startsWith
+                    if (pars[i].lastIndexOf(prefix, 0) !== -1) {
+                        pars.splice(i, 1);
+                    }
+                }
+
+                url = urlparts[0] + '?' + pars.join('&');
+                return url;
+            } else {
+                return url;
+            }
+        }
 
         function hasBeenMined() {
             var transaction = web3.eth.getTransaction(txid);

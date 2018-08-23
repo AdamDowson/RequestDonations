@@ -457,7 +457,7 @@ function requestNetworkDonations(opts) {
 
     opts = Object.assign(defaults, opts);
 
-    var rootUrl = "https://donations.wooreq.com/";
+    var rootUrl = "https://donations.request.network/";
     that = this;
 
     var allCurrencies = {
@@ -543,7 +543,7 @@ function requestNetworkDonations(opts) {
     this.generateRequest = function () {
         var xhr = new XMLHttpRequest();
 
-        var redirectBaseUrl = 'https://donations.wooreq.com/thank-you';
+        var redirectBaseUrl = 'https://donations.request.network/thank-you';
         var url = [location.protocol, '//', location.host, location.pathname].join('');
         const redirectUrlParams = {
             'owed': totalOwed,
