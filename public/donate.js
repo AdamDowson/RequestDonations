@@ -601,7 +601,7 @@ function requestNetworkDonations(opts) {
                     total.innerHTML = totalOwed + ' ' + selectedCurrency;
                     conversionRates[selectedCurrency] = parsedResponse.conversion_rate;
                 } else if (xmlHttp.readyState == 4 && xmlHttp.status != 200) {
-                    alert('Error fetching conversion rates, this error has been logged');
+                    alert('Error: Fetching conversion rates failed, this error has been logged');
                 }
             }
             xmlHttp.open("GET", signUrl, true); // true for asynchronous 
@@ -705,7 +705,6 @@ function requestNetworkDonations(opts) {
         this.loadCSS('https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800|Raleway:400,500,600');
         this.initModal();
         this.addClickEvents();
-        this.fetchRates();
         this.initCustomInput();
         this.setRateClear();
 
