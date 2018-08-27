@@ -581,6 +581,10 @@
     margin-top: 24px;
   }
 
+  .request-transaction-info-block strong {
+    margin-left: 6px;
+  }
+
 
 #custom-amount-trigger.show-input .request-tile-button-label {
   display: none;

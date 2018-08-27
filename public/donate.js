@@ -674,6 +674,10 @@ function requestNetworkDonations(opts) {
                 that.fetchRates();
             }
         });
+
+        triggerButton.addEventListener('click', function () {
+            that.fetchRates();
+        });
     }
 
     this.clearCustomAmount = function () {
@@ -715,104 +719,105 @@ function requestNetworkDonations(opts) {
     this.fetchContentHtml = function () {
         var first = true;
 
-        var html = `<div>
-        <span class="request-h1 request-modal-title">Make a donation today</span>
-        <p class="request-subtitle">How much would you like to donate?</p>
-        <div class="request-tile-container clearfix">
+        var html = '<div>' + 
+        '<span class="request-h1 request-modal-title">Make a donation today</span>' + 
+        '<p class="request-subtitle">How much would you like to donate?</p>' + 
+        '<div class="request-tile-container clearfix">' + 
 
-          <div class="request-tile-outer">
-            <div class="request-tile request-tile-amount" data-req-amount="5">
+          '<div class="request-tile-outer">' + 
+            '<div class="request-tile request-tile-amount" data-req-amount="5">' + 
 
-              <div class="request-amount">
-                <span class="request-dollar">$</span>5</div>
-              <span class="request-tick"></span>
-            </div>
-          </div>
+              '<div class="request-amount">' + 
+                '<span class="request-dollar">$</span>5</div>' + 
+              '<span class="request-tick"></span>' + 
+            '</div>' + 
+          '</div>' + 
 
-          <div class="request-tile-outer">
-            <div class="request-tile request-tile-amount active" data-req-amount="10">
+          '<div class="request-tile-outer">' + 
+            '<div class="request-tile request-tile-amount active" data-req-amount="10">' + 
 
-              <div class="request-amount">
-                <span class="request-dollar">$</span>10</div>
-              <span class="request-tick"></span>
-            </div>
-          </div>
-          <div class="request-tile-outer">
-            <div class="request-tile request-tile-amount" data-req-amount="25">
+              '<div class="request-amount">' + 
+                '<span class="request-dollar">$</span>10</div>' + 
+              '<span class="request-tick"></span>' + 
+            '</div>' + 
+          '</div>' + 
+         '<div class="request-tile-outer">' + 
+            '<div class="request-tile request-tile-amount" data-req-amount="25">' + 
 
-              <div class="request-amount">
-                <span class="request-dollar">$</span>25</div>
-              <span class="request-tick"></span>
-            </div>
-          </div>
-          <div class="request-tile-outer">
-            <div class="request-tile request-tile-amount" data-req-amount="50">
+              '<div class="request-amount">' + 
+                '<span class="request-dollar">$</span>25</div>' + 
+              '<span class="request-tick"></span>' + 
+            '</div>' + 
+          '</div>' + 
+          '<div class="request-tile-outer">' + 
+            '<div class="request-tile request-tile-amount" data-req-amount="50">' + 
 
-              <div class="request-amount">
-                <span class="request-dollar">$</span>50</div>
-              <span class="request-tick"></span>
-            </div>
-          </div>
-          <div class="request-tile-outer">
-            <div class="request-tile request-tile-amount" data-req-amount="100">
+              '<div class="request-amount">' + 
+                '<span class="request-dollar">$</span>50</div>' + 
+              '<span class="request-tick"></span>' + 
+            '</div>' + 
+          '</div>' + 
+          '<div class="request-tile-outer">' + 
+            '<div class="request-tile request-tile-amount" data-req-amount="100">' + 
 
-              <div class="request-amount">
-                <span class="request-dollar">$</span>100</div>
-              <span class="request-tick"></span>
-            </div>
-          </div>
-          <div class="request-tile-outer">
-            <div class="request-tile request-tile-amount" data-req-amount="250">
+              '<div class="request-amount">' + 
+                '<span class="request-dollar">$</span>100</div>' + 
+              '<span class="request-tick"></span>' + 
+            '</div>' + 
+          '</div>' + 
+          '<div class="request-tile-outer">' + 
+            '<div class="request-tile request-tile-amount" data-req-amount="250">' + 
 
-              <div class="request-amount">
-                <span class="request-dollar">$</span>250</div>
-              <span class="request-tick"></span>
-            </div>
-          </div>
-          <div class="request-tile-outer request-tile-outer-large">
-            <div id="custom-amount-trigger" class="request-tile">
-              <span class="request-tile-button-label">
-                Custom amount
-              </span>
-              <div class="custom-amount-input-container">
-                  <span class="request-dollar">$</span>
-                  <input id="custom-amount-input" type="text">
-              </div>
-              <span class="request-tick"></span>
-            </div>
-          </div>
-        </div>
-        <p class="request-subtitle">Select donation currency</p>
-        <div class="request-tile-container clearfix">`;
+              '<div class="request-amount">' + 
+                '<span class="request-dollar">$</span>250</div>' + 
+              '<span class="request-tick"></span>' + 
+            '</div>' + 
+          '</div>' + 
+         '<div class="request-tile-outer request-tile-outer-large">' + 
+            '<div id="custom-amount-trigger" class="request-tile">' + 
+              '<span class="request-tile-button-label">' + 
+                'Custom amount' + 
+              '</span>' + 
+              '<div class="custom-amount-input-container">' + 
+                  '<span class="request-dollar">$</span>' + 
+                  '<input id="custom-amount-input" type="text">' +
+              '</div>' + 
+              '<span class="request-tick"></span>' + 
+            '</div>' + 
+          '</div>' + 
+        '</div>' + 
+        '<p class="request-subtitle">Select donation currency</p>' + 
+        '<div class="request-tile-container clearfix">';
 
 
         for (var currency in filteredCurrencies) {
             var activeClass = first ? 'active' : '';
             
             var currencyLower = currency.toLowerCase();
-            html += `<div class="request-tile-outer">
-              <div class="request-tile request-tile-currency ` + activeClass + `" data-req-currency="` + currency + `">
-              <div class="request-tile-payment-icon">
-                  <i class="request-payment-icon request-payment-icon--` + currencyLower + `"></i>
-                  <span class="request-payment-icon-title">` + currency + `</span>
-              </div>
-              <span class="request-tick"></span>
-              </div>
-          </div>`;
+
+            html += '<div class="request-tile-outer">' +
+              '<div class="request-tile request-tile-currency ' + activeClass + '" data-req-currency="' + currency + '">' +
+              '<div class="request-tile-payment-icon">' +
+                  '<i class="request-payment-icon request-payment-icon--' + currencyLower + '"></i>' +
+                  '<span class="request-payment-icon-title">' + currency + '</span>' +
+              '</div>' +
+              '<span class="request-tick"></span>' +
+              '</div>' +
+          '</div>';
           first = false;
         }
 
 
-        html += `</div>
-        <div class="request-transaction-info-block">
-            <p class="mb-1">Conversion rate:
-            <strong id="request-donations-rate"></strong>
-            </p>
-            <p class="mt-0 mb-0">Total owed:
-            <strong id="request-donations-total"></strong>
-            </p>
-        </div>
-        </div>`;
+        html += '</div>' +
+       '<div class="request-transaction-info-block">' +
+            '<p class="mb-1">Conversion rate:' +
+            '<strong id="request-donations-rate"></strong>' +
+            '</p>' +
+            '<p class="mt-0 mb-0">Total owed:' +
+            '<strong id="request-donations-total"></strong>' +
+            '</p>' +
+        '</div>' +
+        '</div>';
 
         return html;
     }
