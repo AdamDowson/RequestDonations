@@ -9,7 +9,7 @@ let app = express();
 app.get('/thank-you', function (req, res) {
 	res.render(
 		'thank-you',
-		{ txid: req.query.txid, owed: req.query.owed, currency: req.query.currency, redirect: req.query.redirect, fiat: req.query.fiat })
+		{ txid: req.query.txid, owed: req.query.owed, currency: req.query.currency, redirect: req.query.redirect, fiat: req.query.fiat, network: req.query.network })
 });
 
 app.server = http.createServer(app);
@@ -25,6 +25,7 @@ app.use(express.static('public'));
 
 app.use(function (err, req, res, next) {
 	res.send("500" + err);
+	next();
 });
 
 app.server.listen(process.env.PORT || config.port, () => {

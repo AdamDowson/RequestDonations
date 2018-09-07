@@ -1,3 +1,8 @@
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 body {
     font-family: 'Source Sans Pro', serif !important;
 }
@@ -219,4 +224,34 @@ footer {
 
 footer p {
     color: #6f6f7f;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+    .footer-menu-item {
+        width: 100%;
+        margin-top: 16px;
+        margin-left: 0;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .footer-menu-item:nth-child(2) {
+        margin-top: 30px;
+    }
+
+    .more-info-block {
+        margin-bottom: 2rem;
+    }
+
+    .social-icons {
+        width: 100%;
+        float: left !important;
+        margin-top: 12px;
+    }
+
+    .social-icons a {
+        margin-left: 0;
+        margin-right: 12px;
+    }
 }

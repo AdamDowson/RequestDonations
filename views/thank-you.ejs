@@ -3,14 +3,24 @@
 
 <head>
     <title>Request Network Donation - Thank You</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="css/thank-you.css">
+    <link rel="stylesheet" href="css/thank-you.min.css">
 
     <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+    <% 
+        var etherscan_base = "https://etherscan.io/tx/";
+        var infura_base = "https://mainnet.infura.io";
+        if (network && network == 4) {
+            etherscan_base = "https://rinkeby.etherscan.io/tx/";
+            infura_base = "https://rinkeby.infura.io";
+        }
+    %>
 
 </head>
 
@@ -52,7 +62,7 @@
                 </p>
                 <p class="txid-row">
                     <span>TXID:</span>
-                    <a href="https://rinkeby.etherscan.io/tx/<%= txid %>">
+                    <a href="<%= etherscan_base %><%= txid %>">
                         <%= txid %>
                     </a>
                 </p>
@@ -206,7 +216,7 @@
 
         <% } %>
 
-        var web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/a84k2Xp83SohNwwQCTd6"));
+        var web3 = new Web3(new Web3.providers.HttpProvider("<%= infura_base %>/a84k2Xp83SohNwwQCTd6"));
         var txid = "<%= txid %>";
 
         var checkTxidInterval = setInterval(hasBeenMined, 2000);
