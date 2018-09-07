@@ -475,6 +475,7 @@ function requestNetworkDonations(opts) {
                 filteredCurrencies[currCurrency] = allCurrencies[currCurrency];
             }
         }
+        selectedCurrency = opts.currencies[0];
     }
     else {
         filteredCurrencies = allCurrencies;
