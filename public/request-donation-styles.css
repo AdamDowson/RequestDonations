@@ -610,6 +610,7 @@
   outline: 0;
   background: transparent;
   transition: none;
+  box-shadow: none;
 }
 
 #custom-amount-trigger.active .custom-amount-input-container input {
