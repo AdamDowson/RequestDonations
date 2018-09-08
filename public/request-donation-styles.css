@@ -601,16 +601,19 @@
 }
 
 .custom-amount-input-container input {
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: 'Montserrat', sans-serif!important;
   color: #5a5a5a;
   font-weight: 600;
   font-size: 36px;
   line-height: 40px;
-  border: 0;
-  outline: 0;
-  background: transparent;
+  border: 0 !important;
+  outline: 0 !important;
+  background: 0 0;
   transition: none;
-  box-shadow: none;
+  box-shadow: none !important;
+  background: transparent !important;
+  margin: 0;
+  padding: 0;
 }
 
 #custom-amount-trigger.active .custom-amount-input-container input {
