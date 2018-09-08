@@ -1,5 +1,5 @@
 /*!
-* RequestNetworkDonations JavaScript
+* RequestNetworkDonations
 * @author  Adam Dowson
 * @version 0.0.1
 */
@@ -599,7 +599,7 @@ function requestNetworkDonations(opts) {
         if (conversionRates[selectedCurrency]) {
             var rate = conversionRates[selectedCurrency];
             conversionRate.innerHTML = rate;
-            totalOwed = (rate * selectedAmount).toFixed(PAYMENT_ROUND_AMOUNT);
+            totalOwed = parseFloat((rate * selectedAmount).toFixed(PAYMENT_ROUND_AMOUNT)).toString();
             total.innerHTML = totalOwed + ' ' + selectedCurrency;
         } else {
             var signUrl = 'https://sign.wooreq.com/rates' + that.jsonToQueryString(params);
@@ -609,7 +609,7 @@ function requestNetworkDonations(opts) {
                 if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
                     var parsedResponse = JSON.parse(xmlHttp.responseText);
                     conversionRate.innerHTML = parsedResponse.conversion_rate;
-                    totalOwed = (parsedResponse.conversion_rate * selectedAmount).toFixed(PAYMENT_ROUND_AMOUNT);
+                    totalOwed = parseFloat((parsedResponse.conversion_rate * selectedAmount).toFixed(PAYMENT_ROUND_AMOUNT)).toString();
                     total.innerHTML = totalOwed + ' ' + selectedCurrency;
                     conversionRates[selectedCurrency] = parsedResponse.conversion_rate;
                 } else if (xmlHttp.readyState == 4 && xmlHttp.status != 200) {
