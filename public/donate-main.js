@@ -553,7 +553,8 @@ function requestNetworkDonations(opts) {
         var xhr = new XMLHttpRequest();
 
         var redirectBaseUrl = 'https://donations.request.network/thank-you';
-        var url = [location.protocol, '//', location.host, location.pathname].join('');
+        var currentBaseUrl = [location.protocol, '//', location.host].join('');
+        var url = [currentBaseUrl, location.pathname].join('');
 
         var redirectUrlParams = {
             'owed': totalOwed,
@@ -570,7 +571,7 @@ function requestNetworkDonations(opts) {
             'to_pay': totalOwed,
             'to_address': address,
             'redirect_url': fullRedirectUrl,
-            'reason': 'Donation to MakerDAO',
+            'reason': 'Donation to ' + currentBaseUrl,
             'network': network,
             'currency': selectedCurrency
         }
