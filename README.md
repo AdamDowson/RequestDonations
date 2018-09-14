@@ -1,6 +1,8 @@
 donations.request.network - donations script and demos
 ==================================
 
+[Documentation can be found here](https://docs.request.network/integrations/request-donations)
+
 Demo
 ---------------
 [MakerDAO Demo](https://donations.request.network/demo/)
@@ -33,6 +35,7 @@ Add an ID of 'requestDonationTrigger' to an element in your HTML e.g. ```<button
 
 Getting Started
 ---------------
+To run the demos run the following:
 
 ```sh
 # Install dependencies
@@ -44,3 +47,5 @@ npm run dev
 # Start production server:
 npm start
 ```
+
+If you would like to self host you can find the main donations script at /public/donate-main.js. 
