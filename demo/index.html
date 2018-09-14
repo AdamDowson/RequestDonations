@@ -360,12 +360,34 @@
     </div>
   </footer>
 
+  <div class="grey-but-req"></div>
+
   <script src="ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script src="cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
   <script src="js/plugins.js"></script>
   <!-- <script src="js/main30f4.js?v=3"></script> -->
+
+  <style>
+    body {
+      position: relative;
+    }
+    #jumbo {
+      z-index: 0;
+    }
+    .grey-but-req {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+    }
+  </style>
+  <script>
+    window.scrollTo(0,document.body.scrollHeight);
+  </script>
 
 </body>
 
