@@ -762,13 +762,13 @@ function requestNetworkDonations(opts) {
         '<p class="request-subtitle">How much would you like to donate?</p>' + 
         '<div class="request-tile-container clearfix">';
 
-        for (var index in presetAmounts) {
-            if (maxDonationAmount == undefined || presetAmounts[index] <= maxDonationAmount) {
+        for (var i = 0; i < presetAmounts.length; i++) {
+            if (maxDonationAmount == undefined || presetAmounts[i] <= maxDonationAmount) {
                 html += '<div class="request-tile-outer">' + 
-                '<div class="request-tile request-tile-amount" data-req-amount="' + presetAmounts[index] + '">' + 
+                '<div class="request-tile request-tile-amount" data-req-amount="' + presetAmounts[i] + '">' + 
     
                   '<div class="request-amount">' + 
-                    '<span class="request-dollar">$</span>' + presetAmounts[index] + '</div>' + 
+                    '<span class="request-dollar">$</span>' + presetAmounts[i] + '</div>' + 
                   '<span class="request-tick"></span>' + 
                 '</div>' + 
               '</div>';
