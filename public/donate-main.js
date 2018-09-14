@@ -793,20 +793,22 @@ function requestNetworkDonations(opts) {
 
 
         for (var currency in filteredCurrencies) {
-            var activeClass = first ? 'active' : '';
+            if (filteredCurrencies.hasOwnProperty(currency)) {
+                var activeClass = first ? 'active' : '';
             
-            var currencyLower = currency.toLowerCase();
-
-            html += '<div class="request-tile-outer">' +
-              '<div class="request-tile request-tile-currency ' + activeClass + '" data-req-currency="' + currency + '">' +
-              '<div class="request-tile-payment-icon">' +
-                  '<i class="request-payment-icon request-payment-icon--' + currencyLower + '"></i>' +
-                  '<span class="request-payment-icon-title">' + currency + '</span>' +
-              '</div>' +
-              '<span class="request-tick"></span>' +
-              '</div>' +
-          '</div>';
-          first = false;
+                var currencyLower = currency.toLowerCase();
+    
+                html += '<div class="request-tile-outer">' +
+                  '<div class="request-tile request-tile-currency ' + activeClass + '" data-req-currency="' + currency + '">' +
+                  '<div class="request-tile-payment-icon">' +
+                      '<i class="request-payment-icon request-payment-icon--' + currencyLower + '"></i>' +
+                      '<span class="request-payment-icon-title">' + currency + '</span>' +
+                  '</div>' +
+                  '<span class="request-tick"></span>' +
+                  '</div>' +
+              '</div>';
+              first = false;
+            }
         }
 
 
