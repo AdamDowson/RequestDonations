@@ -662,7 +662,7 @@ function requestNetworkDonations(opts) {
 
         proceedButton.addEventListener('click', function () {
             if (network == 4 && selectedCurrency != 'ETH') {
-                alert("You are currently on Rinkeby, ERC20 tokens are not available in this mode - please select ETH or change to mainnet");
+                alert("This application is currently running in testmode (Rinkeby), ERC20 tokens are not available in this mode - please select ETH");
             } else {
                 proceedButton.classList.add('disabled');
                 closeIcon[0].classList.add('hidden');
