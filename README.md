@@ -19,7 +19,8 @@ Embed the following just before the body tags on your site
   var requestDonations = new requestNetworkDonations({
     address: '0xc2390220fc9b6d014d86d90d873c3edb8c1c4156',
     currencies: ['ETH', 'REQ', 'DAI', 'OMG', 'KNC', 'DGX'],
-    network: 4
+    network: 4,
+    max_amount: 500
   });
   requestDonations.start();
 </script>
@@ -30,6 +31,8 @@ Change the 'address' field to the address where you want to recieve funds.
 (optional) Change the 'currencies' field to limit the currencies which you want to recieve. Currently the accepted currencies are: ETH, REQ, DAI, OMG, DGX and KNC. If this parameter is not set all available currencies will be shown - any new currencies will show automatically.
 
 (optional) Set the network parameter value to 4 for testing on Rinkeby. Leave blank for mainnet
+
+(optional) Set the max_amount parameter to limit the maximum donation amount you want to accept
 
 Add an ID of 'requestDonationTrigger' to an element in your HTML e.g. ```<button id="requestDonationTrigger">Click here to trigger the modal</button>```
 

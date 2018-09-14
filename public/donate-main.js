@@ -443,9 +443,10 @@ var amountTiles = document.getElementsByClassName('request-tile-amount');
 var currencyTiles = document.getElementsByClassName('request-tile-currency');
 var customAmountButton, customAmountInput, proceedButton, closeIcon, conversionRate, total;
 var that;
-var selectedAmount = '10', selectedCurrency = 'ETH', totalOwed, network = 1;
+var selectedAmount = '10', selectedCurrency = 'ETH', totalOwed, network = 1, maxDonationAmount;
 var conversionRates = [];
 var filteredCurrencies = [];
+var presetAmounts = [5, 10, 25, 50, 100, 250];
 var address;
 var PAYMENT_ROUND_AMOUNT = 6;
 
@@ -500,6 +501,15 @@ function requestNetworkDonations(opts) {
             return;
         } else {
             network = opts.network;
+        }
+    }
+
+    if (opts.max_amount) {
+        if (isNaN(opts.max_amount)) {
+            alert('Max amount parameter is incorrect');
+            return;
+        } else {
+            maxDonationAmount = opts.max_amount;
         }
     }
 
@@ -663,6 +673,9 @@ function requestNetworkDonations(opts) {
         proceedButton.addEventListener('click', function () {
             if (network == 4 && selectedCurrency != 'ETH') {
                 alert("This application is currently running in testmode (Rinkeby), ERC20 tokens are not available in this mode - please select ETH");
+            } else if (selectedAmount > maxDonationAmount) {
+                var currentBaseUrl = [location.protocol, '//', location.host].join('');
+                alert(currentBaseUrl + " only accepts donations upto the value of $" + maxDonationAmount + ", please lower your donation amount");
             } else {
                 proceedButton.classList.add('disabled');
                 closeIcon[0].classList.add('hidden');
@@ -676,15 +689,22 @@ function requestNetworkDonations(opts) {
         });
 
         customAmountInput.addEventListener('input', function (evt) {
+
             if (this.value) {
                 var numericOnlyValue = this.value.replace(/\D/g, '');
-                selectedAmount = numericOnlyValue;
-                this.value = numericOnlyValue;
-                customAmountButton.classList.add('active');
-                for (var i = 0; i < amountTiles.length; i++) {
-                    amountTiles[i].classList.remove('active');
+                if (numericOnlyValue > maxDonationAmount) {
+                    var currentBaseUrl = [location.protocol, '//', location.host].join('');
+                    customAmountInput.value = selectedAmount;
+                    alert(currentBaseUrl + " only accepts donations upto the value of $" + maxDonationAmount);
+                } else {
+                    selectedAmount = numericOnlyValue;
+                    this.value = numericOnlyValue;
+                    customAmountButton.classList.add('active');
+                    for (var i = 0; i < amountTiles.length; i++) {
+                        amountTiles[i].classList.remove('active');
+                    }
+                    that.fetchRates();
                 }
-                that.fetchRates();
             }
         });
 
@@ -717,6 +737,10 @@ function requestNetworkDonations(opts) {
         }, 60 * 2000); // 2 minutes
     }
 
+    this.filterMaxAmounts = function () {
+        
+    }
+
     this.start = function () {
         this.loadCSS(rootUrl + 'request-donation-styles.min.css');
         this.loadCSS('https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800|Raleway:400,500,600');
@@ -724,6 +748,7 @@ function requestNetworkDonations(opts) {
         this.addClickEvents();
         this.initCustomInput();
         this.setRateClear();
+        this.filterMaxAmounts();
 
         //Debugging
         // donationsModal.open();
@@ -735,58 +760,22 @@ function requestNetworkDonations(opts) {
         var html = '<div>' + 
         '<span class="request-h1 request-modal-title">Make a donation today</span>' + 
         '<p class="request-subtitle">How much would you like to donate?</p>' + 
-        '<div class="request-tile-container clearfix">' + 
+        '<div class="request-tile-container clearfix">';
 
-          '<div class="request-tile-outer">' + 
-            '<div class="request-tile request-tile-amount" data-req-amount="5">' + 
+        for (var index in presetAmounts) {
+            if (maxDonationAmount == undefined || presetAmounts[index] <= maxDonationAmount) {
+                html += '<div class="request-tile-outer">' + 
+                '<div class="request-tile request-tile-amount" data-req-amount="' + presetAmounts[index] + '">' + 
+    
+                  '<div class="request-amount">' + 
+                    '<span class="request-dollar">$</span>' + presetAmounts[index] + '</div>' + 
+                  '<span class="request-tick"></span>' + 
+                '</div>' + 
+              '</div>';
+            }
+        }
 
-              '<div class="request-amount">' + 
-                '<span class="request-dollar">$</span>5</div>' + 
-              '<span class="request-tick"></span>' + 
-            '</div>' + 
-          '</div>' + 
-
-          '<div class="request-tile-outer">' + 
-            '<div class="request-tile request-tile-amount active" data-req-amount="10">' + 
-
-              '<div class="request-amount">' + 
-                '<span class="request-dollar">$</span>10</div>' + 
-              '<span class="request-tick"></span>' + 
-            '</div>' + 
-          '</div>' + 
-         '<div class="request-tile-outer">' + 
-            '<div class="request-tile request-tile-amount" data-req-amount="25">' + 
-
-              '<div class="request-amount">' + 
-                '<span class="request-dollar">$</span>25</div>' + 
-              '<span class="request-tick"></span>' + 
-            '</div>' + 
-          '</div>' + 
-          '<div class="request-tile-outer">' + 
-            '<div class="request-tile request-tile-amount" data-req-amount="50">' + 
-
-              '<div class="request-amount">' + 
-                '<span class="request-dollar">$</span>50</div>' + 
-              '<span class="request-tick"></span>' + 
-            '</div>' + 
-          '</div>' + 
-          '<div class="request-tile-outer">' + 
-            '<div class="request-tile request-tile-amount" data-req-amount="100">' + 
-
-              '<div class="request-amount">' + 
-                '<span class="request-dollar">$</span>100</div>' + 
-              '<span class="request-tick"></span>' + 
-            '</div>' + 
-          '</div>' + 
-          '<div class="request-tile-outer">' + 
-            '<div class="request-tile request-tile-amount" data-req-amount="250">' + 
-
-              '<div class="request-amount">' + 
-                '<span class="request-dollar">$</span>250</div>' + 
-              '<span class="request-tick"></span>' + 
-            '</div>' + 
-          '</div>' + 
-         '<div class="request-tile-outer request-tile-outer-large">' + 
+         html += '<div class="request-tile-outer request-tile-outer-large">' + 
             '<div id="custom-amount-trigger" class="request-tile">' + 
               '<span class="request-tile-button-label">' + 
                 'Custom amount' + 
