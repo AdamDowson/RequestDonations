@@ -764,8 +764,10 @@ function requestNetworkDonations(opts) {
 
         for (var i = 0; i < presetAmounts.length; i++) {
             if (maxDonationAmount == undefined || presetAmounts[i] <= maxDonationAmount) {
+                var activeClassAmounts = selectedAmount == presetAmounts[i] ? 'active' : '';
+                
                 html += '<div class="request-tile-outer">' + 
-                '<div class="request-tile request-tile-amount" data-req-amount="' + presetAmounts[i] + '">' + 
+                '<div class="request-tile request-tile-amount ' + activeClassAmounts + '" data-req-amount="' + presetAmounts[i] + '">' + 
     
                   '<div class="request-amount">' + 
                     '<span class="request-dollar">$</span>' + presetAmounts[i] + '</div>' + 
