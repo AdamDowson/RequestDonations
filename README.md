@@ -17,7 +17,7 @@ Embed the following just before the body tags on your site
 <script type="text/javascript" src="https://donations.request.network/donate.js"></script>
 <script type="text/javascript">
   var requestDonations = new requestNetworkDonations({
-    address: '0xc2390220fc9b6d014d86d90d873c3edb8c1c4156',
+    address: '0x2027c7fd9e48c028e7a927a6def44f4b2e52c703',
     currencies: ['ETH', 'REQ', 'DAI', 'OMG', 'KNC', 'DGX'],
     network: 4,
     max_amount: 500
