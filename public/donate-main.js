@@ -577,13 +577,23 @@ function requestNetworkDonations(opts) {
 
         var fullRedirectUrl = redirectBaseUrl + that.jsonToQueryString(redirectUrlParams);
 
+        var invoiceItem = [{
+            'name': 'Donation to ' + currentBaseUrl,
+            'quantity': 1,
+            'unitPrice': selectedAmount,
+            'taxPercent': 0,
+            'currency': 'USD'
+        }];
+
         var params = {
             'to_pay': totalOwed,
             'to_address': address,
             'redirect_url': fullRedirectUrl,
             'reason': 'Donation to ' + currentBaseUrl,
             'network': network,
-            'currency': selectedCurrency
+            'currency': selectedCurrency,
+            'builder_id': 'RequestDonations',
+            'invoice_items': invoiceItem
         }
 
         var signUrl = 'https://sign.wooreq.com/sign' + that.jsonToQueryString(params);
@@ -601,7 +611,6 @@ function requestNetworkDonations(opts) {
     }
 
     this.fetchRates = function () {
-        var xhr = new XMLHttpRequest();
 
         var params = {
             'currency': selectedCurrency
