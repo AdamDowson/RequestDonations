@@ -466,7 +466,12 @@ function requestNetworkDonations(opts) {
         'REQ': 'Request Network (REQ)',
         'KNC': 'Kyber Network (KNC)',
         'DAI': 'Dai (DAI)',
-        'DGX': 'Digix Gold (DGX)'
+        'DGX': 'Digix Gold (DGX)',
+        'KIN': 'Kin (KIN)',
+        'BNB': 'Binance Coin (BNB)',
+        'BAT': 'Basic Attention Token (BAT)',
+        'ZRX': '0x (ZRX)',
+        'LINK': 'Chainlink (LINK)'
     };
 
     if (opts.currencies != null && opts.currencies.length > 0) {

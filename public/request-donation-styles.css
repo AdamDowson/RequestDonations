@@ -537,45 +537,70 @@
     background-repeat: no-repeat;
     display: inline-block;
   }
-  .request-payment-icon--btc {
-      width: 32px;
-      height: 32px;
-      background-position: -5px -5px;
+  .request-payment-icon--bat {
+    width: 32px;
+    height: 32px;
+    background-position: -5px -5px;
   }
-  .request-payment-icon--dai {
+  .request-payment-icon--bnb {
       width: 32px;
       height: 32px;
       background-position: -47px -5px;
   }
-  .request-payment-icon--dgx {
-      width: 32px;
-      height: 32px;
-      background-position: -5px -47px;
-  }
-  .request-payment-icon--eth {
-      width: 32px;
-      height: 32px;
-      background-position: -47px -47px;
-  }
-  .request-payment-icon--knc {
+  .request-payment-icon--btc {
       width: 32px;
       height: 32px;
       background-position: -89px -5px;
   }
-  .request-payment-icon--omg {
+  .request-payment-icon--dai {
+      width: 32px;
+      height: 32px;
+      background-position: -5px -47px;
+  }
+  .request-payment-icon--dgx {
+      width: 32px;
+      height: 32px;
+      background-position: -47px -47px;
+  }
+  .request-payment-icon--eth {
       width: 32px;
       height: 32px;
       background-position: -89px -47px;
   }
-  .request-payment-icon--req {
+  .request-payment-icon--kin {
       width: 32px;
       height: 32px;
       background-position: -5px -89px;
   }
+  .request-payment-icon--knc {
+      width: 32px;
+      height: 32px;
+      background-position: -47px -89px;
+  }
+  .request-payment-icon--link {
+      width: 32px;
+      height: 32px;
+      background-position: -89px -89px;
+  }
+  .request-payment-icon--omg {
+      width: 32px;
+      height: 32px;
+      background-position: -131px -5px;
+  }
+  .request-payment-icon--req {
+      width: 32px;
+      height: 32px;
+      background-position: -131px -47px;
+  }
   .request-payment-icon--req-large {
       width: 28px;
       height: 40px;
-      background-position: -47px -89px;
+      background-position: -131px -89px;
+  }
+  .request-payment-icon--zrx {
+      width: 32px;
+      height: 32px;
+      background-position: -5px -139px;
   }
 
   .request-transaction-info-block {

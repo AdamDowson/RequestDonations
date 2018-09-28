@@ -18,7 +18,7 @@ Embed the following just before the body tags on your site
 <script type="text/javascript">
   var requestDonations = new requestNetworkDonations({
     address: '0x2027c7fd9e48c028e7a927a6def44f4b2e52c703',
-    currencies: ['ETH', 'REQ', 'DAI', 'OMG', 'KNC', 'DGX'],
+    currencies: ['ETH', 'REQ', 'DAI', 'OMG', 'KNC', 'DGX', 'KIN', 'BNB', 'BAT', 'ZRX', 'LINK'],
     network: 4,
     max_amount: 500
   });
@@ -28,7 +28,7 @@ Embed the following just before the body tags on your site
 
 Change the 'address' field to the address where you want to recieve funds.
 
-(optional) Change the 'currencies' field to limit the currencies which you want to recieve. Currently the accepted currencies are: ETH, REQ, DAI, OMG, DGX and KNC. If this parameter is not set all available currencies will be shown - any new currencies will show automatically.
+(optional) Change the 'currencies' field to limit the currencies which you want to recieve. Currently the accepted currencies are: REQ, DAI, KNC, OMG, DGX, KIN, BNB, BAT, ZRX and LINK. If this parameter is not set all available currencies will be shown - any new currencies will show automatically.
 
 (optional) Set the network parameter value to 4 for testing on Rinkeby. Leave blank for mainnet
 
